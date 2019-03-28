@@ -1,5 +1,5 @@
-#!/usr/bin/env python 
-# -*- coding: utf-8 -*- 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # @Author : Su18
 # @Copyright : <phoebebuffayfan9527@gmail.com>
 # @For U : Like knows like.
@@ -22,7 +22,7 @@ class Detector(TfidfVectorizer):
 
     def load_model(self):
         # 加载模型
-        with open("E:/PY-Study/XssFilter/ModuleTrain/cache/model.pkl", 'rb') as file:
+        with open("E:/Project/Github/Marcus-XssFilter/Marcus/ModuleTrain/cache/model.pkl", 'rb') as file:
             self.model = pickle.load(file)
 
     def vectorizer(self):
@@ -36,7 +36,7 @@ class Detector(TfidfVectorizer):
     def vocabulary_iter():
         for i in string.printable:
             for j in string.printable:
-                yield i + j
+                    yield i + j
 
 
 if __name__ == '__main__':

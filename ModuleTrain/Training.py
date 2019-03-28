@@ -148,5 +148,6 @@ class Train:
 
 
 if __name__ == '__main__':
-    train1 = Train(path="E:\PY-Study\XssFilter")
+    train1 = Train(path="E:/Project/Github/Marcus-XssFilter/Marcus/")
+
     train1.get_model()

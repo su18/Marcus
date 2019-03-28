@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XSS测试页面</title>
+</head>
+<body>
+    <form id="searchForm">
+        <input id="inputValue" type="text" name="string">
+        <button type="button" id="btn">提交</button>
+    </form>
+    <script src="../static/js/jquery.min.js"></script>
+    <script>
+        $(this).keydown( function(e) {
+            var key = window.event?e.keyCode:e.which;
+            if(key.toString() == "13"){
+                return false;
+            }
+        });
+       $("#btn").on("click",function(){
+           var txt = $('input[type=text]').val();
+           $.ajax({
+                type: "POST",
+                url:'http://192.168.88.221:8000/xss/',
+                data:{
+                    string:  $('input[type=text]').val()
+                },
+                async: false,
+                success: function(data) {
+                        if (data.status) {
+                        alert(data.message);
+                    } else {
+                        $("#inputValue").remove();
+                        $("#btn").before('<input type="text" value="'+ data.data + '" name="string" id="inputValue" >');
+                        // document.getElementById('inputValue').setAttribute('value', data.data);
+                    }
+                }
+            });
+
+        })
+
+    </script>
+</body>
+</html>

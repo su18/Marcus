@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from XssFilter import xss
+from XssFilter import index
 
 urlpatterns = [
     path('xss/', xss.XssDetect.as_view()),
+    path('index/', index.Index.as_view()),
 ]
